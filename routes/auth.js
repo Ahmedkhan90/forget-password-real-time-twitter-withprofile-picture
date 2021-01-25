@@ -6,8 +6,9 @@ var postmark = require("postmark");
 var { SERVER_SECRET } = require("../core/index");
 var emailApi = process.env.EMAIL_API;
 var api = express.Router();
+ var client = new postmark.Client(token);
 
-
+// 8f8baeb3-aae6-4784-afe1-5b2885d81808
 //******* SIGNUP ********//
 
 
@@ -188,25 +189,25 @@ api.post("/forget-password", (req, res, next) => {
                 otpCode: otp
             }).then((doc) => {
 
-                // client.sendEmail({
-                //     "From": "postmark email",
-                //     "To": req.body.email,
-                //     "Subject": "Reset your password",
-                //     "TextBody": `Here is your password reset code: ${otp}`
-                // }).then((status) => {
+                client.sendEmail({
+                    "From": "postmark email",
+                    "To": req.body.email,
+                    "Subject": "Reset your password",
+                    "TextBody": `Here is your password reset code: ${otp}`
+                }).then((status) => {
 
-                // console.log("status: ", status);
-                //     res.send({
-                //         message: "Email Send OPT",
-                //         status: 200
-                //     })
+                console.log("status: ", status);
+                    res.send({
+                        message: "Email Send OPT",
+                        status: 200
+                    })
 
-                // })
-                console.log("your OTP: ", otp);
-                res.send({
-                    message: "Email Send OPT",
-                    status: 200
-                });
+                })
+                // console.log("your OTP: ", otp);
+                // res.send({
+                //     message: "Email Send OPT",
+                //     status: 200
+                // });
 
 
             }).catch((err) => {
