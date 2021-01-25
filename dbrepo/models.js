@@ -2,7 +2,6 @@ var mongoose = require("mongoose");
 
 // let dbURI = "mongodb+srv://iamfarooqi:03325312621@cluster0.8tr9b.mongodb.net/TestDataBase?retryWrites=true&w=majority";
 let dbURI = process.env.dbURI
-//"mongodb+srv://ahmed:ahmed@cluster0.l8ly0.mongodb.net/ahmed?retryWrites=true&w=majority";
 
 mongoose.connect(dbURI, {useNewUrlParser: true,useUnifiedTopology: true});
 

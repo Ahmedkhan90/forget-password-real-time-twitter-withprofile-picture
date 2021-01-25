@@ -6,9 +6,9 @@ var postmark = require("postmark");
 var { SERVER_SECRET } = require("../core/index");
 var emailApi = process.env.EMAIL_API;
 var api = express.Router();
- var client = new postmark.Client(token);
+ var client = json.parser(process.env.client)
+//new postmark.Client(token);
 
-// 8f8baeb3-aae6-4784-afe1-5b2885d81808
 //******* SIGNUP ********//
 
 
