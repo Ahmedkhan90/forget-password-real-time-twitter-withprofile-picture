@@ -1,7 +1,10 @@
 ///SignUP
-// var url = "https://pyt-app.herokuapp.com";
+// var url = https:twitter-app-ahm.herokuapp.com;
 
-const url = "http://localhost:5000"
+const url = "https://twitter-app-ahm.herokuapp.com/"
+
+
+// const url = "http://localhost:5000"
 // const url = "http://192.168.2.119:5000"
 
 var socket = io(url);
