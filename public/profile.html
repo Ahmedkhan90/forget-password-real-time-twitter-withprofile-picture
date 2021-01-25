@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="icon" href="../img/fav.ico" type="image/gif" sizes="16x16">
+    <!-- <link rel="icon" href="../img/fav.png" type="image/gif" sizes="16x16"> -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="socket.io.js"></script>
+    <link rel="stylesheet" href="profile.css">
+
+
+
+</head>
+
+<body onload="profile()">
+    <!------------------------------ NAvBar -------------------------------->
+    <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img src="../img/MAk logo.png" width="100px"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="home.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Users</a>
+                    </li> -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="profile.html" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Profile
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="index.html">Sign Up</a></li>
+                            <li><a class="dropdown-item" href="login.html">Log In</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><button onclick="return logout()" class="dropdown-item">LogOut</button></li>
+
+                        </ul>
+                    </li>
+                    <!-- <li class="nav-item">
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+          </li> -->
+                <!-- </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav> -->
+    <!-------------------------------------- End NavBar --------------------------->
+    
+    <div style="margin-top: 2%;" class="container main-secction">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 image-section">
+                 <img > 
+            </div> 
+            <div class="row user-left-part">
+                <div class="col-md-3 col-sm-3 col-xs-12 user-profil-part pull-left">
+                    <div class="" class="row ">
+                        <div class="col-md-12 col-md-12-sm-12 col-xs-12 user-image text-center">
+
+                            <!--<form onsubmit="return upload()">
+                                <input required type="file" id="fileInput" onchange="previewFile()"> <br>
+                                 <img src=""  id="profilePic">  
+                                <img id="profilePic" for="fileInput"  src="https://www.jamf.com/jamf-nation/img/default-avatars/generic-user-purple.png" class="rounded-circle"> <br>
+                                 <img src="" alt=""> 
+                                <button  class="btn btn-outline-primary" for="fileInput" type="submit">upload</button>
+                                </form>  -->
+
+                                <!-- <form class="form-inline"> -->
+
+                                    <!-- <div class="profileInfo"> -->
+
+                                      <!-- <div class="imgContainer"> -->
+
+                                        <!-- <label class="filebutton">
+                                            <img id="profilePic" for="fileInput" alt="profile pic"  src="images/" class="rounded-circle" onchange="previewFile()" > <br>
+<br>
+                                          <input  class="opacityFile" type="file" id="fileInput" name="myfile" onchange="upload()">
+                                          <button  class="btn btn-outline-primary" for="fileInput" type="submit" onclick="upload()">upload</button> 
+                                          </label> -->
+                                          <!-- <img id="profilePic1" for="fileInput" alt="profile pic"  src="images/profile.png" onchange="previewFile()"  class="rounded-circle" > -->
+                                          
+                                          <form class="image-upload">
+                                              <input style="display: none;"  type="file" id="fileInput" onchange="upload()"  /><br />
+                                              <label for="fileInput">
+                                                <img id="profilePic" for="fileInput" alt="profile pic"  src="../img/f-back.png" onchange="previewFile()"  class="rounded-circle" >
+                                                <!-- <img alt="profile image" id="userImg" class="profileImage" /> -->
+                                            </label>
+                                            <!-- <input type="submit" value="upload" id="uploadBtn"  class="uBtn" /> -->
+                                          </form>
+
+
+                        </div>
+
+                        <div class="col-md-12 col-sm-12 col-xs-12 user-detail-section1 text-center">
+                            <button style="display: none;" id="btn-contact" (click)="clearModal()" data-toggle="modal" data-target="#contact"
+                                 class="btn btn-success btn-block follow">Upload</button> 
+                            <button style="display: none;" class="btn btn-warning btn-block">UserName</button>
+                        </div>
+                        <div class="row user-detail-row">
+                            <!-- <div class="col-md-12 col-sm-12 user-detail-section2 pull-left">
+                                <div class="border"></div>
+                                <p>FOLLOWER</p>
+                                <span>320</span>
+                            </div> -->
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-9 col-sm-9 col-xs-12 pull-right profile-right-section">
+                    <div class="row profile-right-section-row">
+                        <div class="col-md-12 profile-header">
+                            <div class="row">
+                                <div class="col-md-8 col-sm-6 col-xs-6 profile-header-section1 pull-left">
+                                    <h1 id="name">Name</h1>
+                                    <h5>Profession</h5>
+                                </div>
+                                <div class="col-md-4 col-sm-6 col-xs-6 profile-header-section1 text-right pull-rigth">
+                                    <a href="#user-id" class="btn btn-primary btn-block">User Detail</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <ul class="nav nav-tabs" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" href="#profile" role="tab" data-toggle="tab"><i
+                                                    class="fas fa-user-circle"></i> User Information</a>
+                                        </li>
+                                        <!-- <li class="nav-item">
+                                            <a class="nav-link" href="#buzz" role="tab" data-toggle="tab"><i
+                                                    class="fas fa-info-circle"></i>User Information</a>
+                                        </li> -->
+                                    </ul>
+
+                                    <!-- Tab panes -->
+                                    <div class="tab-content">
+
+                                        
+                                        <div role="tabpanel" class="tab-pane fade show active" id="profile">
+                                             <div class="row">
+                                                <div class="col-md-2">
+                                                    <label>ID:</label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p id="user-id">user ID</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <label>Email:</label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p id="email">user email</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <label>Gender:</label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p id="gender">user gender</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <label>Phone:</label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p id="phone">12345678</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <label>Profesion</label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p>Developer</p>
+                                                </div> 
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <a href="#" onload="mytweet()">my tweet</a>
+                                        </div>
+
+    <!-- prious code -->
+    <!-- <div style="margin-top: 2%;" class="container main-secction">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 image-section">
+                <img onchange="previewFile()">
+            </div>
+            <div class="row user-left-part">
+                <div class="col-md-3 col-sm-3 col-xs-12 user-profil-part pull-left">
+                    <div class="" class="row ">
+                        <div class="col-md-12 col-md-12-sm-12 col-xs-12 user-image text-center"> -->
+                            <!-- old commit -->
+                            <!--<form onsubmit="return upload()">
+                                <input required type="file" id="fileInput" onchange="previewFile()"> <br>
+                                 <img src=""  id="profilePic">  
+                                <img id="profilePic" for="fileInput"  src="https://www.jamf.com/jamf-nation/img/default-avatars/generic-user-purple.png" class="rounded-circle"> <br>
+                                 <img src="" alt=""> 
+                                <button  class="btn btn-outline-primary" for="fileInput" type="submit">upload</button>
+                                </form>  -->
+
+                            <!-- <form class="form-inline"> -->
+
+                            <!-- <div class="profileInfo"> -->
+                            <!-- End old Commit -->
+                            <!-- proiou code -->
+                            <!-- <div class="imgContainer">
+
+                                <label class="filebutton">
+                                    <img id="profilePic" for="fileInput" alt="profile pic" src="images/"
+                                        class="rounded-circle" onchange="previewFile()"> <br>
+
+                                    <input style="display: none;" class="opacityFile" type="file" id="fileInput"
+                                        name="myfile" onchange="upload()"> -->
+                                        <!-- old commit -->
+                                    
+                                    <!-- <button  class="btn btn-outline-primary" for="fileInput" type="submit" onclick="upload()">upload</button> -->
+                                <!-- end old commit -->
+                            <!-- proiou code -->
+
+                                <!-- </label>
+
+
+                            </div>
+
+                            <div class="col-md-12 col-sm-12 col-xs-12 user-detail-section1 text-center">
+                                <button style="display: none;" id="btn-contact" (click)="clearModal()"
+                                    data-toggle="modal" data-target="#contact"
+                                    class="btn btn-success btn-block follow">Upload</button>
+                                <button style="display: none;" class="btn btn-warning btn-block">UserName</button>
+                            </div>
+                            <div class="row user-detail-row"> -->
+                            <!-- end proiou code -->
+
+                                <!-- old commit -->
+                                <!-- <div class="col-md-12 col-sm-12 user-detail-section2 pull-left">
+                                <div class="border"></div>
+                                <p>FOLLOWER</p>
+                                <span>320</span>
+                            </div> -->
+                            <!-- end old commit -->
+                            <!-- proiou code -->
+<!-- 
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-9 col-sm-9 col-xs-12 pull-right profile-right-section">
+                        <div class="row profile-right-section-row">
+                            <div class="col-md-12 profile-header">
+                                <div class="row">
+                                    <div class="col-md-8 col-sm-6 col-xs-6 profile-header-section1 pull-left">
+                                        <h1 id="name">Name</h1>
+                                        <h5>Profession</h5>
+                                    </div>
+                                    <div
+                                        class="col-md-4 col-sm-6 col-xs-6 profile-header-section1 text-right pull-rigth">
+                                        <a href="#user-id" class="btn btn-primary btn-block">User Detail</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <ul class="nav nav-tabs" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="nav-link active" href="#profile" role="tab"
+                                                    data-toggle="tab"><i class="fas fa-user-circle"></i> User
+                                                    Information</a>
+                                            </li> -->
+                            <!-- end proiou code -->
+
+                                            <!-- old commit -->
+                                            <!-- <li class="nav-item">
+                                            <a class="nav-link" href="#buzz" role="tab" data-toggle="tab"><i
+                                                    class="fas fa-info-circle"></i>User Information</a>
+                                        </li> -->
+                                        <!-- end old commit -->
+                            <!-- proiou code -->
+
+                                        <!-- </ul> -->
+                            <!--end proiou code -->
+
+                                        <!-- Tab panes -->
+                            <!-- proiou code -->
+<!-- 
+                                        <div class="tab-content">
+
+
+                                            <div role="tabpanel" class="tab-pane fade show active" id="profile">
+                                                <div class="row">
+                                                    <div class="col-md-2">
+                                                        <label>ID:</label>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <p id="user-id">user ID</p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-2">
+                                                        <label>Email:</label>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <p id="email">user email</p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-2">
+                                                        <label>Gender:</label>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <p id="gender">user gender</p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-2">
+                                                        <label>Phone:</label>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <p id="phone">12345678</p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-2">
+                                                        <label>Profesion</label>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <p>Developer</p>
+                                                    </div>
+                                                </div>
+                                            </div> -->
+                            <!-- end proiou code -->
+
+                                            <!-- older then old code -->
+                                            <!-- <div style="margin-top: 2%;" class="container main-secction">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 image-section">
+                <img src="">
+            </div>
+            <div class="row user-left-part">
+                <div class="col-md-3 col-sm-3 col-xs-12 user-profil-part pull-left">
+                    <div class="row ">
+                        <div class="col-md-12 col-md-12-sm-12 col-xs-12 user-image text-center">
+                            <img src="https://www.jamf.com/jamf-nation/img/default-avatars/generic-user-purple.png"
+                                class="rounded-circle">
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12 user-detail-section1 text-center">
+                            <button id="btn-contact" (click)="clearModal()" data-toggle="modal" data-target="#contact"
+                                class="btn btn-success btn-block follow">Contactarme</button>
+                            <button class="btn btn-warning btn-block">Descargar Curriculum</button>
+                        </div>
+                        <div class="row user-detail-row">
+                            <div class="col-md-12 col-sm-12 user-detail-section2 pull-left">
+                                <div class="border"></div>
+                                <p>FOLLOWER</p>
+                                <span>320</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-9 col-sm-9 col-xs-12 pull-right profile-right-section">
+                    <div class="row profile-right-section-row">
+                        <div class="col-md-12 profile-header">
+                            <div class="row">
+                                <div class="col-md-8 col-sm-6 col-xs-6 profile-header-section1 pull-left">
+                                    <h1 id="name">Name</h1>
+                                    <h5>Profession</h5>
+                                </div>
+                                <div class="col-md-4 col-sm-6 col-xs-6 profile-header-section1 text-right pull-rigth">
+                                    <a href="/search" class="btn btn-primary btn-block">Seguir buscando</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <ul class="nav nav-tabs" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" href="#profile" role="tab" data-toggle="tab"><i
+                                                    class="fas fa-user-circle"></i> User Information</a>
+                                        </li> -->
+
+
+                                            <!-- <li class="nav-item">
+                                            <a class="nav-link" href="#buzz" role="tab" data-toggle="tab"><i
+                                                    class="fas fa-info-circle"></i>User Information</a>
+                                        </li> -->
+
+                                            <!--                                         
+                                    </ul> -->
+
+                                            <!-- Tab panes -->
+                                            <!-- <div class="tab-content">
+
+                                        
+                                        <div role="tabpanel" class="tab-pane fade show active" id="profile">
+                                             <div class="row">
+                                                <div class="col-md-2">
+                                                    <label>ID:</label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p id="user-id">user ID</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <label>Email:</label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p id="email">user email</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <label>Gender:</label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p id="gender">user gender</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <label>Phone:</label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p id="phone">12345678</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <label>Profesion</label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p>Developer</p>
+                                                </div> 
+                                            </div>
+                                        </div> -->
+
+                                            <!-- older then old code end -->
+                                            <!------------------------------- JavaScript Link ------------------------------->
+                                            <script src="app.js"></script>
+</body>
+
+</html>
